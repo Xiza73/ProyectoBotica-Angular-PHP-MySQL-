@@ -1,0 +1,71 @@
+<app-breadcrumb [title]="title" [items]="['other']" [active_item]="'Sample'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>{{ subtitle }}</h5>
+        </div>
+        <form class="form theme-form"
+              [formGroup]="productForm"
+              (ngSubmit)="createProduct()">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                  <div class="form-group">
+                      <label for="nameInput">Nombre</label>
+                      <input class="form-control" id="nameInput" type="text"
+                              name="firstname" placeholder="">
+                  </div>
+              </div>
+              <div class="col-3">
+                  <div class="form-group">
+                      <label for="priceInput">Precio</label>
+                      <input class="form-control" id="priceInput" type="number"
+                              name="price" placeholder="">
+                  </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                    <label for="stockInput">Stock</label>
+                    <input class="form-control" id="stockInput" type="number"
+                            name="stock" placeholder="">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                    <label for="categorySelect">Categoría</label>
+                    <select class="form-control" id="categorySelect" name="category">
+                        <option [value]="">Cuidado de la Salud</option>
+                        <option [value]="">Cuidado Personal</option>
+                        <option [value]="">Mamá y Bebé</option>
+                    </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                    <label for="descriptionInput">Descripción</label>
+                    <textarea class="form-control" id="descriptionInput" rows="4"
+                              name="description"></textarea>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="imageInput">Imagén</label>
+                  <input class="form-control" id="imageInput" type="file" (change)="onImageSelected($event)" 
+                            name="image">
+              </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-footer">
+              <button class="btn btn-primary" type="submit">{{ btnLabel }}</button>
+              <button class="btn btn-light ml-1" type="button" [routerLink]="[backURL]">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

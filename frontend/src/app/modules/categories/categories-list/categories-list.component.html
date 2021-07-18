@@ -1,0 +1,55 @@
+<app-breadcrumb [title]="'Categorías'" [items]="[]" [active_item]="'Categorías'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <!-- <h5>Sample Card</h5><span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span> -->
+          <button class="btn btn-primary d-flex align-items-center px-3"
+                  routerLink="/categorias/nuevo">
+            <i data-feather="plus" class="mr-1"></i>
+            Nueva categoría
+          </button>
+        </div>
+        <div class="card-body custom-datatable">
+
+          <!-- Tabla usuarios -->
+          <ngx-datatable class="bootstrap" [rows]="categories"
+                        [columnMode]="'flex'"
+                        [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+            <ngx-datatable-column name="Nombre" prop="nombre" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.nombre }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Descripción" prop="descripcion" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.descripcion }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Acción" prop="id" [flexGrow]="1" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                <button class="btn btn-primary boton-icono-sm"
+                        [routerLink]="['/categorias/editar', row.id]">
+                  <i data-feather="edit"></i>
+                </button>
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <!-- Resuelve problema con CSS -->
+            <ngx-datatable-column name="" prop="" [flexGrow]="1" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+
+              </ng-template>
+            </ngx-datatable-column> 
+
+          </ngx-datatable>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

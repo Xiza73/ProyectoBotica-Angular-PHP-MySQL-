@@ -1,0 +1,36 @@
+<app-breadcrumb [title]="title" [items]="['Categorías']" [active_item]="btnLabel"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>{{ subtitle }}</h5>
+        </div>
+        <form class="form theme-form">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                  <div class="form-group">
+                      <label for="nameInput">Nombre</label>
+                      <input class="form-control" id="nameInput" type="text"
+                              name="name" placeholder="">
+                  </div>
+              </div>
+              <div class="col-6">
+                  <div class="form-group">
+                      <label for="descriptionInput">Descripción</label>
+                      <input class="form-control" id="descriptionInput" type="text"
+                              name="description" placeholder="">
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+              <button class="btn btn-primary" type="submit">{{ btnLabel }}</button>
+              <button class="btn btn-light ml-1" type="button" [routerLink]="[backURL]">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
