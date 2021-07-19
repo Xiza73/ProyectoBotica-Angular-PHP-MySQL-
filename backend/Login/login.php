@@ -1,28 +1,33 @@
 <?php
+  header("Access-Control-Allow-Origin: http://localhost:4200");
 
-require 'bd.php';
-
-if(!empty($_POST['email']) && !empty($_POST['password'])){
-  $email=$_POST['email'];
-  $contrasenia=$_POST['password'];
-  session_start();
-  $_SESSION['email']-$usuario;
-
-  $consulta="SELECT*FROM tb_cliente WHERE email='$email' and password='$contrasenia' ";
-  $resultado=mysqli_query($conexion,$consulta);
-
-  $filas=mysqli_num_rows($resultado);
-
-  if($filas){
-      header("location:bd.php"); //poner pagina de ingreso
-  }else{
-    echo "<h1>Usuario no existe o datos invalidos</h1>";
+  if(empty($_GET['user']) || empty($_GET['password'])){
+    exit("Datos insuficientes");
   }
-  mysqli_free_result($resultado);
-  mysqli_close($conexion);
+  $username=$_GET['user'];
+  $password=$_GET['password'];
+  //session_start();
+  //$_SESSION['email']-$usuario;
 
-}else{
-    echo "<h1>llene el formulario</h1>";
-}
+  $conn = include_once '../bd.php';
 
+  $consulta = $conn->prepare('SELECT * FROM tb_usuario WHERE id_usuario=' . $username . ' AND pass=' . $password);
+
+  try{
+    $resultado=$consulta->execute(); //boolean
+
+    if($resultado){
+      $response=$consulta->fetchAll();
+
+      if($response){
+        echo json_encode($response);
+      }else{
+        exit("Usuario no encontrado");
+      }
+    }
+  }catch(Exception $e){
+    exit("Usuario no encontrado");
+  }
+  
+  
 ?>
