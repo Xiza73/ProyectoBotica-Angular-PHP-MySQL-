@@ -6,49 +6,49 @@
         <div class="card-header">
           <h5>{{ subtitle }}</h5>
         </div>
-        <form class="form theme-form">
+        <form class="form theme-form" [formGroup]="userForm" (ngSubmit)="createUser()">
           <div class="card-body">
             <div class="row">
               <div class="col-6">
                   <div class="form-group">
-                      <label for="firstnameInput">Nombres</label>
+                      <label for="firstnameInput">Nombre</label>
                       <input class="form-control" id="firstnameInput" type="text"
-                              name="firstname" placeholder="">
+                              name="firstname" placeholder="" formControlName="nombre">
                   </div>
               </div>
               <div class="col-6">
                   <div class="form-group">
-                      <label for="lastnameInput">Apellidos</label>
+                      <label for="lastnameInput">Apellido</label>
                       <input class="form-control" id="lastnameInput" type="text"
-                              name="lastname" placeholder="">
+                              name="lastname" placeholder="" formControlName="apellido">
                   </div>
               </div>
-              <div class="col-6">
+              <!-- <div class="col-6">
                 <div class="form-group">
                     <label for="dniInput">DNI</label>
                     <input class="form-control" id="dniInput" type="number"
-                            name="dni" placeholder="">
+                            name="dni" placeholder="" formControlName="dni">
                 </div>
-              </div>
+              </div> -->
               <div class="col-6">
                 <div class="form-group">
                     <label for="phoneInput">Teléfono</label>
                     <input class="form-control" id="phoneInput" type="number"
-                            name="phone" placeholder="">
+                            name="phone" placeholder="" formControlName="telefono">
                 </div>
               </div>
-              <div class="col-6" *ngIf="subtitle === 'Nuevo empleado' || subtitle === 'Editar empleado'">
+              <div class="col-6">
                 <div class="form-group">
                     <label for="emailInput">Correo electrónico</label>
                     <input class="form-control" id="emailInput" type="email"
-                            name="email" placeholder="">
+                            name="email" placeholder="" formControlName="email">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                     <label for="addressInput">Dirección</label>
                     <input class="form-control" id="addressInput" type="text"
-                            name="address" placeholder="">
+                            name="address" placeholder="" formControlName="direccion">
                 </div>
               </div>
               <div class="col-6" *ngIf="subtitle === 'Nuevo empleado' || subtitle === 'Editar empleado'">
@@ -66,7 +66,7 @@
                 <div class="form-group">
                     <label for="passwordInput">Contraseña</label>
                     <input class="form-control" id="passwordInput" type="password"
-                           name="password" placeholder="">
+                           name="password" placeholder="" formControlName="password">
                 </div>
               </div>
             </div>

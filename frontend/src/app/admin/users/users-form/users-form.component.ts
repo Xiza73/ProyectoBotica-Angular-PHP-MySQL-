@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/services/api/user.service';
 
 @Component({
   selector: 'app-users-form',
@@ -13,8 +15,19 @@ export class UsersFormComponent implements OnInit {
   btnLabel: string;
   backURL: string;
 
+  userForm: FormGroup = this.fb.group({
+    nombre   : [ '', [  ] ],
+    apellido : [ '', [  ] ],
+    email    : [ '', [  ] ],
+    password : [ '', [  ] ],
+    telefono : [ '', [  ] ],
+    direccion: [ '', [  ] ],
+  });
+
   constructor(
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +56,10 @@ export class UsersFormComponent implements OnInit {
     }
   }
 
-  can
-
+  createUser() {
+    this.userService.createUser(this.userForm.value);
+    console.log('insertado');
+  }
+  
+  // nombre, apellido, email, password, telefono, direccion
 }
