@@ -7,6 +7,7 @@ import { UsersFormComponent } from './users-form/users-form.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +19,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     CommonModule,
     SharedModule,
     UsersRoutingModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/api/auth.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [ Validators.required, Validators.email ]],
@@ -33,7 +35,8 @@ export class LoginComponent implements OnInit {
   login() {
     // this.authService.SignIn(this.loginForm.value['email'], this.loginForm.value['password']);
     this.authService.getLogin(this.loginForm.value['email'], this.loginForm.value['password']).subscribe(data => {
-      console.log("ingresado")
+      console.log('datos correctos');
+      this.router.navigate(['/admin']);
     }, err => {
       console.log(err);
     });

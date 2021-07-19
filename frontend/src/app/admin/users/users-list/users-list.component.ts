@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/services/api/user.service';
 
 @Component({
   selector: 'app-users-list',
@@ -131,7 +132,7 @@ export class UsersListComponent implements OnInit {
       telefono: '999999999',
       rol: 'almacenero'
     },
-];
+  ];
 
   // Datatable
   columns = [
@@ -151,7 +152,8 @@ export class UsersListComponent implements OnInit {
 
 
   constructor(
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -171,6 +173,12 @@ export class UsersListComponent implements OnInit {
       this.editURL = '/admin/usuarios/empleados/editar';
     }
 
+
+    this.userService.getUsers().subscribe(data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
+    });
   }
 
 
