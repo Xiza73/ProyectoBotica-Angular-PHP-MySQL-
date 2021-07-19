@@ -23,6 +23,8 @@
         $resultado = $insert->execute();
         if($resultado){
             echo "Insertado Correctamente.";
+        }else{
+            echo "Error al insertar";
         }
 
     }catch(Exceptio $e){
