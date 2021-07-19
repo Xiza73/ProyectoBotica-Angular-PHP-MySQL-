@@ -1,0 +1,66 @@
+<app-breadcrumb [title]="'Pedidos'" [items]="[]" [active_item]="'Pedidos'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <!-- <div class="card-header">
+          <h5>Sample Card</h5><span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+        </div> -->
+        <div class="card-body custom-datatable">
+          <!-- Tabla pedidos -->
+          <ngx-datatable class="bootstrap" [rows]="orders"
+                        [columnMode]="'flex'"
+                        [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+            <ngx-datatable-column name="Código" prop="codigo" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.codigo }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="DNI Cliente" prop="cliente" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.cliente.dni }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Monto" prop="monto" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.monto | currency }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Fecha de Pedido" prop="fechaPedido" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.fechaPedido }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Estado" prop="estado" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.estado }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Acción" prop="codigo" [flexGrow]="1" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                <button class="btn btn-primary boton-icono-sm"
+                        [routerLink]="['editar', row.codigo]">
+                  <i data-feather="eye"></i>
+                </button>
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <!-- Resuelve problema con CSS -->
+            <ngx-datatable-column name="" prop="" [flexGrow]="1" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+
+              </ng-template>
+            </ngx-datatable-column> 
+
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

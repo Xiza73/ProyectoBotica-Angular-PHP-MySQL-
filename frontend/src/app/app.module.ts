@@ -25,6 +25,7 @@ import localePe from '@angular/common/locales/es-PE';
 import { registerLocaleData } from '@angular/common';
 
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }

@@ -1,0 +1,161 @@
+<app-breadcrumb [title]="title" [items]="['Pedidos']" [active_item]="'Detalle'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row default-according style-1 faq-accordion">
+    <div class="col-sm-12">
+
+      <div class="card">
+        <ngb-accordion #acc="ngbAccordion" [closeOthers]="false" activeIds="ngb-panel-0">
+          <ngb-panel>
+            <ng-template ngbPanelTitle><i data-feather="info"></i> Detalle del pedido</ng-template>
+            <ng-template ngbPanelContent>
+              
+              <div class="row">
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="codeInput">Código del pedido</label>
+                    <input class="form-control" id="codeInput" type="text"
+                            name="code" disabled [value]="pedido.codigo">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="orderDateInput">Fecha del pedido</label>
+                    <input class="form-control" id="orderDateInput" type="text"
+                            name="orderDate" disabled [value]="pedido.fechaPedido">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="amountInput">Monto del pedido</label>
+                    <input class="form-control" id="amountInput" type="text"
+                            name="amount" disabled [value]="pedido.monto | currency">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                      <label for="categorySelect">Estado del pedido</label>
+                      <select class="form-control" id="categorySelect" name="category">
+                          <option [value]="">Pendiente</option>
+                          <option [value]="">Entregado</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+
+      <div class="card">
+        <ngb-accordion #acc="ngbAccordion" [closeOthers]="false" activeIds="ngb-panel-1">
+          <ngb-panel>
+            <ng-template ngbPanelTitle><i data-feather="info"></i> Productos del Pedido</ng-template>
+            <ng-template ngbPanelContent>
+              
+              <!-- Tabla pedidos -->
+              <ngx-datatable class="bootstrap" [rows]="pedido.details"
+                            [columnMode]="'flex'"
+                            [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
+
+                <ngx-datatable-column name="Nombre" prop="nombre" [flexGrow]="1">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    {{ row.nombre }}
+                  </ng-template>
+                </ngx-datatable-column> 
+
+                <ngx-datatable-column name="Precio" prop="precio" [flexGrow]="1">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    {{ row.precio | currency }}
+                  </ng-template>
+                </ngx-datatable-column> 
+
+                <ngx-datatable-column name="Cantidad" prop="cantidad" [flexGrow]="1">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    {{ row.cantidad }}
+                  </ng-template>
+                </ngx-datatable-column> 
+
+                <ngx-datatable-column name="Subtotal" prop="" [flexGrow]="1">
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    {{ (row.precio * row.cantidad) | currency }}
+                  </ng-template>
+                </ngx-datatable-column> 
+
+              </ngx-datatable>
+
+              <!-- <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let detail of pedido.details">
+                    <td>{{ detail.nombre }}</td>
+                    <td>{{ detail.precio | currency }}</td>
+                    <td>{{ detail.cantidad }}</td>
+                    <td>{{ (detail.precio * detail.cantidad) | currency }}</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>TOTAL</td>
+                    <td>{{ pedido.monto | currency }}</td>
+                  </tr>
+                </tbody>
+              </table> -->
+
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+
+      <div class="card">
+        <ngb-accordion #acc="ngbAccordion" [closeOthers]="false" activeIds="ngb-panel-2">
+          <ngb-panel>
+            <ng-template ngbPanelTitle><i data-feather="info"></i> Datos de Entrega</ng-template>
+            <ng-template ngbPanelContent>
+              
+              <div class="row">
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="addressInput">Dirección</label>
+                    <input class="form-control" id="addressInput" type="text"
+                           name="address" disabled [value]="pedido.direccion">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="fullnameInput">Nombre del cliente</label>
+                    <input class="form-control" id="fullnameInput" type="text"
+                           name="customerFullname" disabled [value]="pedido.cliente.nombre + ' ' + pedido.cliente.apellido">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="dniInput">DNI del cliente</label>
+                    <input class="form-control" id="dniInput" type="text"
+                           name="dni" disabled [value]="pedido.cliente.dni">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                      <label for="phoneInput">Teléfono de contacto</label>
+                      <input class="form-control" id="phoneInput" type="text"
+                             name="phone" disabled [value]="pedido.cliente.telefono">
+                  </div>
+                </div>
+              </div>
+
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+
+    </div>
+  </div>
+</div>

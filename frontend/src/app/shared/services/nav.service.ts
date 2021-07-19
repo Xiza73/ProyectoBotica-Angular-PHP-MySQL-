@@ -86,21 +86,21 @@ export class NavService implements OnDestroy {
 			headTitle1: 'Panel de control', headTitle2: 'Opciones disponibles.',
 		},
 		{
-			path: '/dashboard', title: 'Dashboard', icon: 'home', type: 'link', bookmark: true
+			path: '/admin/dashboard', title: 'Dashboard', icon: 'home', type: 'link', bookmark: true
 		},	
 		{
-			path: '/categorias', title: 'Categorías', icon: 'list', type: 'link', bookmark: true
+			path: '/admin/categorias', title: 'Categorías', icon: 'list', type: 'link', bookmark: true
 		},
 		{
-			path: '/pedidos', title: 'Pedidos', icon: 'file-text', type: 'link', bookmark: true
+			path: '/admin/pedidos', title: 'Pedidos', icon: 'file-text', type: 'link', bookmark: true
 		},
 		{
-			path: '/productos', title: 'Productos', icon: 'box', type: 'link', bookmark: true
+			path: '/admin/productos', title: 'Productos', icon: 'box', type: 'link', bookmark: true
 		},
 		{
 			title: 'Usuarios', icon: 'users', type: 'sub', active: false, children: [
-				{ path: '/usuarios/clientes', title: 'Clientes', type: 'link' },
-				{ path: '/usuarios/empleados', title: 'Empleados', type: 'link' }
+				{ path: '/admin/usuarios/clientes', title: 'Clientes', type: 'link' },
+				{ path: '/admin/usuarios/empleados', title: 'Empleados', type: 'link' }
 			]
 		},
 	];

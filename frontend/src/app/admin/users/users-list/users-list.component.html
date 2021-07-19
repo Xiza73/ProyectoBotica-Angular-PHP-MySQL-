@@ -1,0 +1,76 @@
+<app-breadcrumb [title]="title" [items]="['Usuarios']" [active_item]="isCustomersPage ? 'Clientes' : 'Empleados'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <!-- <h5>Sample Card</h5><span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span> -->
+          <button class="btn btn-primary d-flex align-items-center px-3"
+                  [routerLink]="['nuevo']">
+            <i data-feather="plus" class="mr-1"></i>
+            Nuevo {{ btnLabel }}
+          </button>
+        </div>
+        <div class="card-body custom-datatable">
+
+          <!-- Tabla usuarios -->
+          <ngx-datatable class="bootstrap" [rows]="users"
+                        [columnMode]="'flex'"
+                        [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+
+            <ngx-datatable-column name="Nombre" prop="nombre" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.nombre }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="DNI" prop="dni" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.dni }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Teléfono" prop="telefono" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.telefono }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Email" prop="email" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.email }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column *ngIf="!isCustomersPage"
+                                  name="Rol" prop="rol" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                {{ row.rol }}
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-column name="Acción" prop="id" [flexGrow]="1" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                <button class="btn btn-primary boton-icono-sm"
+                        [routerLink]="[editURL, row.id]">
+                    <i data-feather="edit"></i>
+                </button>
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <!-- Resuelve problema con CSS -->
+            <ngx-datatable-column name="" prop="" [flexGrow]="1" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+
+              </ng-template>
+            </ngx-datatable-column> 
+
+          </ngx-datatable>
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
