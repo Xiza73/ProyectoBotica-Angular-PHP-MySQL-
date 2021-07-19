@@ -13,15 +13,16 @@
     $telefono=$_GET['telefono'];
     $direccion=$_GET['direccion'];
     $estado=$_GET['estado'];
+    $rol=$_GET['rol'];
 
     $conn = include_once '../bd.php';
 
-    $insert = $conn->prepare("INSERT INTO tb_empleado(nombre, apellido, email, password, telefono, direccion, estado) 
-                                VALUES ('$nombre','$apellido','$email','$password','$telefono','$direccion','$estado')");
+    $insert = $conn->prepare("INSERT INTO tb_empleado(nombre, apellido, email, password, telefono, direccion, rol) 
+                                VALUES ('$nombre','$apellido','$email'," . 123 . ",'$telefono','$direccion', '$rol')");
     try{
         $resultado = $insert->execute();
-        if($insert){
-            //...
+        if($resultado){
+            echo "Insertado Correctamente.";
         }
 
     }catch(Exceptio $e){
