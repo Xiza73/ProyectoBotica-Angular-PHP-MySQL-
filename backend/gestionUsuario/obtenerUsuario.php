@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: http://localhost:4200");
 
   $conn = include_once '../bd.php';
 
-  $consulta = $conn->prepare('SELECT * FROM tb_empelado');
+  $consulta = $conn->prepare("SELECT * FROM tb_empleado;");
 
   try{
     $resultado=$consulta->execute(); 
@@ -14,11 +14,12 @@ header("Access-Control-Allow-Origin: http://localhost:4200");
       if($response){
         echo json_encode($response);
       }else{
-        exit("Usuario no encontrado");
+        exit("Usuarios no existentes");
       }
     }
   }catch(Exception $e){
-    exit("Usuario no encontrado");
+    echo $e;
+    exit("Error al buscar usuarios");
   }
 
 

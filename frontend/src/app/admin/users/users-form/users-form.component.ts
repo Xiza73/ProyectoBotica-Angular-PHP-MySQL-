@@ -31,6 +31,8 @@ export class UsersFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getUsuarios();
+
     this.currentURL = this.router.url;
 
     if (this.currentURL === '/admin/usuarios/empleados/nuevo') {
@@ -57,8 +59,20 @@ export class UsersFormComponent implements OnInit {
   }
 
   createUser() {
-    this.userService.createUser(this.userForm.value);
-    console.log('insertado');
+    this.userService.createUser(this.userForm.value).subscribe(data => {
+      console.log('insertado');
+    }, err => {
+      console.log(err);
+      console.log("error al agregar usuario");
+    });
+  }
+
+  getUsuarios() {
+    this.userService.getUsers().subscribe(data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
+    })
   }
   
   // nombre, apellido, email, password, telefono, direccion

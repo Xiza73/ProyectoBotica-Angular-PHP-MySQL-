@@ -2,7 +2,7 @@
     header("Access-Control-Allow-Origin: http://localhost:4200");
 
     if(empty($_GET['nombre']) || empty($_GET['apellido']) || empty($_GET['email']) || empty($_GET['password']) 
-       || empty($_GET['telefono']) ||empty($_GET['direccion']) || empty($_GET['estado'])){
+       || empty($_GET['telefono']) ||empty($_GET['direccion']) || empty($_GET['estado']) || empty($_GET['rol'])){
         exit("Datos insuficientes");
     }
 
@@ -18,7 +18,7 @@
     $conn = include_once '../bd.php';
 
     $insert = $conn->prepare("INSERT INTO tb_empleado(nombre, apellido, email, password, telefono, direccion, rol) 
-                                VALUES ('$nombre','$apellido','$email'," . 123 . ",'$telefono','$direccion', '$rol')");
+                                VALUES ('$nombre','$apellido','$email','$password','$telefono','$direccion', '$rol')");
     try{
         $resultado = $insert->execute();
         if($resultado){
@@ -27,7 +27,8 @@
             echo "Error al insertar";
         }
 
-    }catch(Exceptio $e){
+    }catch(Exception $e){
+        echo $e;
         exit("Query failed");
     }
 

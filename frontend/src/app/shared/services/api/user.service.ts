@@ -11,8 +11,9 @@ export class UserService {
 
   createUser(user: any){
     const { nombre, apellido, email, password, telefono, direccion } = user;
-    const estado = 0;
-    return this.http.get(`${this.API}/gestionUsuario/aniadirUsuario.php?nombre=${nombre}&apellido=${apellido}&email=${email}&password=${password}&telefono=${telefono}&direccion=${direccion}&estado=${estado}`);
+    const estado = "1";
+    console.log(user);
+    return this.http.get(`${this.API}/gestionUsuario/aniadirUsuario.php?nombre=${nombre}&apellido=${apellido}&email=${email}&password=${password}&telefono=${telefono}&direccion=${direccion}&estado=${estado}&rol=Repartidor`);
   }
 
   getUsers() {
