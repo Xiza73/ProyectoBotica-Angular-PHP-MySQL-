@@ -3,79 +3,51 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cuba": {
+    "vex": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:application": {
+        "@schematics/angular:component": {
           "style": "scss"
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "vex",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "lodash",
-              "rxjs-compat",
-              "@ks89/angular-modal-gallery",
-              "mousetrap",
-              "hammerjs",
-              "firebase/app",
-              "dragula",
-              "knob",
-              "chartist",
-              "chartjs-plugin-streaming",
-              "@firebase/app",
-              "chart.js",
-              "dom-set",
-              "crossvent",
-              "contra/emitter",
-              "ev-emitter/ev-emitter",
-              "get-size/get-size",
-              "outlayer/outlayer",
-              "rxjs",
-              "ngx-masonry",
-              "@firebase/component",
-              "@firebase/firestore",
-              "@firebase/auth",
-              "@firebase/util",
-              "rxjs/operators",
-              "rxjs/Subject",
-              "rxjs/internal/operators",
-              "rxjs/internal/observable/of",
-              "rxjs/add/operator/map",
-              "rxjs/Subscription",
-              "masonry-layout",
-              "imagesloaded",
-              "rxjs-compat/add/operator/map",
-              "@mattlewis92/dom-autoscroller",
-              "dom-plane",
-              "@mattlewis92/dom-autoscroller",
-              "@tweenjs/tween.js",
-              "photoswipe",
-              "photoswipe/dist/photoswipe-ui-default",
-              "angular-calendar/date-adapters/date-fns",
-              "apexcharts",
-              "apexcharts/dist/apexcharts.min.js",
-              "calendar-utils/date-adapters/date-fns"
-            ],
-            "outputPath": "dist/cuba",
+            "outputPath": "dist/vex",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/assets/images/favicon.png",
-              "src/assets"
+              "src/favicon.ico",
+              "src/assets",
+              "src/_redirects",
+              "src/README.md",
+              "src/CHANGELOG.md",
+              "src/.htaccess"
             ],
             "styles": [
-              "node_modules/font-awesome/scss/font-awesome.scss",
+              "src/@vex/styles/tailwind.scss",
               "src/styles.scss"
             ],
             "scripts": [],
+            "allowedCommonJsDependencies": [
+              "simplebar",
+              "highlight.js",
+              "faker",
+              "showdown",
+              "core-js",
+              "dom-set",
+              "dom-plane",
+              "angular-calendar/date-adapters/date-fns",
+              "calendar-utils/date-adapters/date-fns",
+              "@mattlewis92/dom-autoscroller",
+              "apexcharts"
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -94,7 +66,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -102,13 +73,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "9mb",
-                  "maximumError": "9mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "9mb",
-                  "maximumError": "9mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
                 }
               ]
             }
@@ -117,18 +83,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cuba:build"
+            "browserTarget": "vex:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cuba:build:production"
+              "browserTarget": "vex:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cuba:build"
+            "browserTarget": "vex:build"
           }
         },
         "test": {
@@ -165,24 +131,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cuba:serve"
+            "devServerTarget": "vex:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cuba:serve:production"
+              "devServerTarget": "vex:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "cuba",
-  "cli": {
-    "analytics": false
-  },
-  "schematics": {
-    "@schematics/angular:component": {
-      "style": "scss"
-    }
-  }
+  "defaultProject": "vex"
 }

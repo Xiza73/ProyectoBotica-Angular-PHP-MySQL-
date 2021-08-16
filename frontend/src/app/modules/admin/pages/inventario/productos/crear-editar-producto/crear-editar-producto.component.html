@@ -1,0 +1,112 @@
+<form (ngSubmit)="guardar()" [formGroup]="form">
+  <div fxLayout="row" fxLayoutAlign="start center" mat-dialog-title>
+    <!-- <img *ngIf="form.get('imageSrc').value" [src]="form.get('imageSrc').value" class="avatar mr-5"> -->
+
+    <h2 *ngIf="esModoCrear()"
+        class="headline m-0"
+        fxFlex="auto">
+        Nuevo producto
+    </h2>
+    <h2 *ngIf="esModoEditar()"
+        class="headline m-0"
+        fxFlex="auto">
+        Editar producto
+    </h2>
+
+    <!-- <button [matMenuTriggerFor]="settingsMenu" class="text-secondary" mat-icon-button type="button">
+      <mat-icon [icIcon]="icMoreVert"></mat-icon>
+    </button> -->
+
+    <button class="text-secondary" mat-dialog-close mat-icon-button type="button">
+      <mat-icon [icIcon]="icClose"></mat-icon>
+    </button>
+  </div>
+
+  <mat-divider class="-mx-6 text-border"></mat-divider>
+
+  <mat-dialog-content fxLayout="column">
+
+    <div fxLayout="column" class="mt-6">
+      <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+        <ngx-dropzone-label>
+          <div class="m-6">
+            <p>Seleccione una imagen</p>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+      </div>
+    </div>
+
+    <mat-form-field class="mt-6 flex-auto">
+      <mat-label>Nombre</mat-label>
+      <input cdkFocusInitial formControlName="nombre" matInput>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto">
+      <mat-label>Descripción</mat-label>
+      <textarea formControlName="descripcion" matInput 
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Precio</mat-label>
+        <input cdkFocusInitial formControlName="precio" matInput type="number">
+      </mat-form-field>
+
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Stock</mat-label>
+        <input cdkFocusInitial formControlName="stock" matInput type="number">
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col sm:flex-row">
+      <mat-form-field class="flex-auto">
+        <mat-label>Categoría</mat-label>
+        <mat-select cdkFocusInitial formControlName="idCategoria" matInput>
+          <mat-option [value]="1">Mamá y Bebé</mat-option>
+          <mat-option [value]="2">Medicamentos</mat-option>
+          <mat-option [value]="3">Cosméticos</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="sm:ml-6 flex-auto">
+        <mat-label>Estado</mat-label>
+        <mat-select cdkFocusInitial formControlName="estado" matInput>
+          <mat-option [value]="1">Activo</mat-option>
+          <mat-option [value]="2">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </mat-dialog-content>
+
+  
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">CANCELAR</button>
+    <button *ngIf="esModoCrear()" color="primary" mat-button type="submit">CREAR</button>
+    <button *ngIf="esModoEditar()" color="primary" mat-button type="submit">ACTUALIZAR</button>
+  </mat-dialog-actions>
+</form>
+
+<mat-menu #settingsMenu="matMenu" xPosition="before" yPosition="below">
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icPrint"></mat-icon>
+    <span>Print</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icDownload"></mat-icon>
+    <span>Export</span>
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon [icIcon]="icDelete"></mat-icon>
+    <span>Delete</span>
+  </button>
+</mat-menu>

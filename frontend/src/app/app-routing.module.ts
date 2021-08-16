@@ -1,34 +1,42 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
+import { CustomLayoutComponent } from './layout/custom-layout/custom-layout.component';
 
 const routes: Routes = [
   {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    path: '',
+    redirectTo: 'entrar',
+    pathMatch: 'full'
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: '',
+    component: CustomLayoutComponent,
+    children: [
+      {
+        path: 'admin',
+        loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+      }
+    ]
   },
   {
-    path: 'registro',
-    component: RegisterComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'login'
+    path: '',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+      }
+    ]
   }
 ];
 
 @NgModule({
-  imports: [[RouterModule.forRoot(routes, {
-    anchorScrolling: 'enabled',
+  imports: [RouterModule.forRoot(routes, {
+    // preloadingStrategy: PreloadAllModules,
     scrollPositionRestoration: 'enabled',
-    relativeLinkResolution: 'legacy'
-})],
-],
+    relativeLinkResolution: 'corrected',
+    anchorScrolling: 'enabled'
+  })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
